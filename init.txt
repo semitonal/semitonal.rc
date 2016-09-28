@@ -222,7 +222,7 @@ dump_order += overview,screenshot,monlist,messages,action_counts,vaults
 dump_order += notes,kills
 dump_book_spells = true
 note_items =
-note_items += of Zot,experience,acquirement,running,of resistance, Archmagi
+note_items += of Zot,experience,acquirement,running,of resistance,Archmagi
 note_items += crystal plate armour,dragon armour 
 note_items += artefact,wand of (heal wounds|hasting|teleportation)
 note_monsters =
@@ -246,7 +246,7 @@ ai += (bad|dangerous)_item.*potion:!q
 ai += (bad|dangerous)_item.*scroll:!r
 ai += potions? of berserk rage:!q
 ai += scrolls? of silence:!r
-# ai += staff of (Wucad Mu|conjuration|energy|power|wizardry):!a
+ai += staff of (Wucad Mu|conjuration|energy|power|wizardry):!a
 ai += wand of (heal wounds|hasting|teleportation):!d
 ai += (large rock|throwing net|curare|of dispersal):=f
 ai += scrolls? of identify:@r1
@@ -306,11 +306,9 @@ cset_unicode = cloud:#
 feature = (closed|runed|sealed) door {+,,}
 
 # Free glyphs: a, j, k, I, U
-# TODO: free up R
+# TODO: free up R, B
 mon := mon_glyph
 mon =
-
-mon += battlemage:â™ª
 
 # Uniques
 # TODO: recheck all of this
@@ -662,11 +660,11 @@ msc += mute:force your foes to
 
 # Spellcasting spam reduction (by dianne)
 # Macro z and Z to ===force_cast_spell
-#msc += mute:Cast which spell\? \(
-#msc += mute:^Casting.*
-#msc += mute:Confirm with \. or Enter, or press \? or \* to list all spells\.
-#msc += mute:Press\: \? - help, Shift-Dir - straight line, f - you
-#msc += mute:for a list of commands and other information
+msc += mute:Cast which spell\? \(
+msc += mute:^Casting.*
+msc += mute:Confirm with \. or Enter, or press \? or \* to list all spells\.
+msc += mute:Press\: \? - help, Shift-Dir - straight line, f - you
+msc += mute:for a list of commands and other information
 {
 function force_cast_spell()
   crawl.mpr('<cyan>Cast which spell?</cyan>')
