@@ -352,7 +352,6 @@ mon += spectral weapon:green 7
 
 # Demonspawn
 mon += blood saint:9
-mon += chaos champion:9
 mon += warmonger:9
 mon += corrupter:9
 mon += black sun:9
