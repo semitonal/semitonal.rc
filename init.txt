@@ -211,6 +211,7 @@ use_animations =
 use_animations += beam,range
 cloud_status = true
 tile_display_mode = hybrid
+bold_brightens_foreground = true
 
 #### Character dump & notes
 
