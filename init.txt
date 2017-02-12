@@ -426,7 +426,6 @@ ignore += contamination has completely
 ignore += rod.*has recharged
 ignore += your breath back
 
-ignore += pray:
 ignore += talk:
 ignore += talk_visual:
 ignore += friend_spell:
