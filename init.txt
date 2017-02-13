@@ -12,14 +12,12 @@ ae += (useless|evil)_item
 ae += dangerous_item.*scrolls? of (holy word|noise|torment)
 ae += scrolls? of (immolation|vulnerability)
 ae += potions? of (berserk rage|flight|invisibility|lignification|mutation)
-ae += (beef jerk|pizza)
 : if you.race() ~= "Vampire" then
 ae += potions? of.*blood
 : end
 
 # Inclusions
-ae += <wand of (heal wounds|hasting|teleportation)
-ae += <unidentified.*(wand|jewellery|book|magical staff|rod)
+ae += <unidentified.*(wand|jewellery|book|magical staff)
 ae += <jewellery.*(slaying|protection$|evasion|reflection)
 ae += <throwing net
 ae += <curare
@@ -33,14 +31,12 @@ ae =
 
 ae += (useless|evil)_item
 ae += dangerous_item.*scrolls? of (holy word|torment)
-ae += (beef jerk|pizza|royal jell|fruit)
-ae += <wand of (heal wounds|hasting|teleportation)
+ae += (royal jell|fruit)
 ae += <scrolls? of (acquirement|identify|recharging|remove curse)
 ae += <scrolls? of (amnesia|brand weapon|enchant|magic mapping)
 ae += <scrolls? of (fog|holy word|torment)
 ae += <scrolls? of (blinking|teleportation)
-ae += <potions? of (beneficial mutation|cure mutation|experience)
-ae += <potions? of (curing|heal wounds|magic|restore abilities)
+ae += <potions? of (experience|curing|heal wounds|magic)
 ae += <unidentified.*jewellery
 : end
 
@@ -97,9 +93,7 @@ local function pickup_stackable(it, name)
      and (subtype == "fan of gales"
           or subtype == "lamp of fire" 
           or subtype == "phial of floods"
-          or subtype == "stone of tremors"
-          or subtype == "disc of storms"
-          or subtype == "lantern of shadows"
+          or subtype == "lightning rod"
           or subtype == "crystal ball of energy") then
     if it.stacks() then return false end
   elseif class == "potion"
@@ -224,11 +218,10 @@ dump_order += overview,screenshot,monlist,messages,action_counts,vaults
 dump_order += notes,kills
 dump_book_spells = true
 note_items =
-note_items += of Zot,experience,acquirement,running,of resistance,Archmagi
-note_items += crystal plate armour,dragon armour 
-note_items += artefact,wand of (heal wounds|hasting|teleportation)
+note_items += of Zot,experience,acquirement,of running,of resistance,Archmagi
+note_items += crystal plate armour,dragon scales,artefact
 note_monsters =
-note_monsters += orb of fire
+note_monsters += orb of fire,ancient lich
 note_hp_percent = 10
 note_all_skill_levels = true
 note_xom_effects = true
@@ -249,16 +242,12 @@ ai += (bad|dangerous)_item.*scroll:!r
 ai += potions? of berserk rage:!q
 ai += scrolls? of silence:!r
 ai += staff of (Wucad Mu|conjuration|energy|power|wizardry):!a
-ai += wand of (heal wounds|hasting|teleportation):!d
 ai += (large rock|throwing net|curare|of dispersal):=f
 ai += scrolls? of identify:@r1
 ai += potions? of curing:@q1
 ai += potions? of heal wounds:@q2
-ai += wand of heal wounds:@v2
 ai += potions? of haste:@q3
-ai += wand of hasting:@v3
 ai += scrolls? of teleportation:@r4
-ai += wand of teleportation:@v4
 : if you.race() == "Vampire" then
 ai += potions? of.*blood:@q4
 : end
@@ -377,11 +366,10 @@ item =
 
 item += (potion|scroll|wand|jewellery):lightgrey
 item += spellbook:red
-item += wand of (heal wounds|hasting|teleportation):yellow
 item += scrolls? of (blinking|teleportation):yellow
 item += potions? of (haste|heal wounds|magic):yellow
 item += scrolls? of (acquirement|brand weapon|enchant|recharging):cyan
-item += potions? of (beneficial mutation|cure mutation|experience):cyan
+item += potions? of experience:cyan
 item += unidentified.*(potion|scroll|book|wand|jewellery):lightblue
 item += unidentified.*manual:white
 item += useless_item.*(potion|scroll):darkgrey
@@ -423,7 +411,6 @@ ignore += Lightning arcs down from a storm cloud
 ignore += (crumbles|melts) away\.
 ignore += grinding sound
 ignore += contamination has completely
-ignore += rod.*has recharged
 ignore += your breath back
 
 ignore += talk:
@@ -478,6 +465,7 @@ more += hiss of flowing sand
 more += sound of rushing water
 more += heat about you
 more += crackle of arcane power
+more += distant wind
 : end
 more += The mighty Pandemonium lord .* resides here
 more += You pick up the .* rune and feel its power
@@ -490,7 +478,6 @@ more += grants you a gift
 more += offers you knowledge of
 more += believes you are ready to make a new sacrifice
 more += may now remember your ancestor
-more += may now specialize your ancestor
 
 # Abyss
 more += is wielding.*distortion
@@ -505,7 +492,7 @@ more += Found .* abyssal rune of Zot
 # Interrupts
 more += You don't .* that spell
 more += You fail to use your ability
-more += You miscast.*(Blink|Borgnjor|Door|Haste|Invisibility)
+more += You miscast.*(Blink|Borgnjor|Door|Invisibility)
 more += You can't (read|drink|do)
 more += You cannot .* while unable to breathe
 more += You cannot .* in your current state
@@ -521,7 +508,6 @@ more += This wand has no charges
 more += You are held in a net
 more += You don't have any such object
 more += You can't unwield
-more += enough magic points
 more += You don't have the energy to cast that spell
 
 # Bad things
@@ -647,9 +633,6 @@ msc += mute:your.*(struggles|tears|pulls away).*(web|net)
 
 msc += mute:constricts?.*no damage
 
-# Prayer
-channel.pray += mute
-
 # Jiyva
 msc += mute:slurping|squelching
 msc += mute:splits in two
@@ -678,7 +661,6 @@ msc += mute:meld.*your body
 msc += mute:This .* flesh tastes
 msc += mute:begins to bleed from.*wounds
 msc += mute:writhes in agony as.*flesh
-msc += mute:An air elemental.*itself.*the air
 msc += mute:You feel a.*surge of power
 msc += mute:Your legs become a tail as you enter the water
 msc += mute:You cannot train any new skill
@@ -697,7 +679,6 @@ msc += $danger:Space bends around you
 msc += $danger:sense of stasis
 msc += $danger:clumsily bash
 msc += $danger:goes berserk
-msc += $danger:Forgetting.* will destroy the book
 msc += $danger:The blast of calcifying dust hits you
 msc += $danger:You are engulfed in calcifying dust
 msc += $danger:is moving more slowly
@@ -709,13 +690,8 @@ msc += $danger:you convulse
 msc += $danger:You feel a build-up of mutagenic energy
 msc += $danger:place you under penance
 
-msc += $item_dmg:acid corrodes
-msc += $item_dmg:catch(es)? fire
-msc += $item_dmg:freezes? and shatters?
-msc += $item_dmg:covered with spores
-msc += $item_dmg:devours some of your food
-msc += $item_dmg:rots? away
-
+msc += $warning:corrodes you
+msc += $warning:rotting away
 msc += $warning:ticking.*clock
 msc += $warning:dying ticks
 msc += $warning:distant snort
@@ -738,6 +714,8 @@ msc += $warning:oppressive heat
 msc += $warning:rumble.*avalanche of rocks
 msc += $warning:crackle.*arcane power
 msc += $warning:crackle.*magical portal
+msc += $warning:distant wind
+msc += $warning:whistling.*wind
 msc += $warning:fails to return
 msc += $warning:no longer ripe
 
