@@ -266,7 +266,7 @@ bindkey = [O] CMD_NO_CMD_DEFAULT
 bindkey = [}] CMD_NO_CMD_DEFAULT
 
 # Macro keys
-bindkey = [`] CMD_NO_CMD_DEFAULT
+bindkey = [`] CMD_LUA_CONSOLE
 bindkey = [1] CMD_NO_CMD_DEFAULT
 bindkey = [2] CMD_NO_CMD_DEFAULT
 bindkey = [3] CMD_NO_CMD_DEFAULT
