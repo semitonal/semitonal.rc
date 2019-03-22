@@ -3,7 +3,7 @@
 
 #### Autopickup
 
-autopickup = $?!%
+autopickup = $/?!%
 ae := autopickup_exceptions
 ae =
 
@@ -12,12 +12,13 @@ ae += (useless|evil)_item
 ae += dangerous_item.*scrolls? of (holy word|noise|torment)
 ae += scrolls? of (immolation|vulnerability)
 ae += potions? of (berserk rage|flight|invisibility|lignification|mutation)
+ae += wands? of (flame|random effects)
 : if you.race() ~= "Vampire" then
 ae += potions? of.*blood
 : end
 
 # Inclusions
-ae += <unidentified.*(wand|jewellery|book|magical staff)
+ae += <unidentified.*(jewellery|book|magical staff)
 ae += <jewellery.*(slaying|protection$|evasion|reflection)
 ae += <throwing net
 ae += <curare
@@ -31,8 +32,7 @@ ae =
 
 ae += (useless|evil)_item
 ae += dangerous_item.*scrolls? of (holy word|torment)
-ae += (royal jell|fruit)
-ae += <scrolls? of (acquirement|identify|recharging|remove curse)
+ae += <scrolls? of (acquirement|identify|remove curse)
 ae += <scrolls? of (amnesia|brand weapon|enchant|magic mapping)
 ae += <scrolls? of (fog|holy word|torment)
 ae += <scrolls? of (blinking|teleportation)
@@ -44,8 +44,6 @@ ae += <unidentified.*jewellery
 ae += <figurine of a ziggurat
 ae += <manual of
 ae += <rune of Zot
-: if you.god() == "Nemelex Xobeh" then
-ae += <deck
 : end
 
 {
@@ -84,22 +82,12 @@ local function pickup_equipment(it, name)
 end
 
 -- Autopickup of stackable items
--- Doesn't work properly at the moment, oops
 local function pickup_stackable(it, name)  
   local class = it.class(true)
-  local subtype = it.subtype()
-  local ego = it.ego(true)
-  if class == "miscellaneous" 
-     and (subtype == "fan of gales"
-          or subtype == "lamp of fire" 
-          or subtype == "phial of floods"
-          or subtype == "lightning rod"
-          or subtype == "crystal ball of energy") then
-    if it.stacks() then return false end
-  elseif class == "potion"
-         or class == "scroll"
-         or class == "missile"
-         or class == "miscellaneous" then
+  if class == "potion"
+     or class == "scroll"
+     or class == "missile"
+     or class == "miscellaneous" then
     if it.stacks() then return true end
   end
   return
@@ -251,9 +239,6 @@ ai += scrolls? of teleportation:@r4
 : if you.race() == "Vampire" then
 ai += potions? of.*blood:@q4
 : end
-: if you.god() == "Fedhas" then
-ai += fruit:!e
-: end
 
 show_god_gift = unident
 
@@ -294,6 +279,8 @@ display_char = permawall:x2593
 display_char = wall_magic:x2591
 cset_unicode = item_gold:xa3
 cset_unicode = cloud:#
+cset_unicode = cloud_weak:xa7
+cset_unicode = cloud_fading:x263c
 feature = (closed|runed|sealed) door {+,,}
 
 # Free glyphs: a, j, k, I, U
@@ -368,7 +355,7 @@ item += (potion|scroll|wand|jewellery):lightgrey
 item += spellbook:red
 item += scrolls? of (blinking|teleportation):yellow
 item += potions? of (haste|heal wounds|magic):yellow
-item += scrolls? of (acquirement|brand weapon|enchant|recharging):cyan
+item += scrolls? of (acquirement|brand weapon|enchant):cyan
 item += potions? of experience:cyan
 item += unidentified.*(potion|scroll|book|wand|jewellery):lightblue
 item += unidentified.*manual:white
