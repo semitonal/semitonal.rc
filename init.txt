@@ -44,7 +44,6 @@ ae += <unidentified.*jewellery
 ae += <figurine of a ziggurat
 ae += <manual of
 ae += <rune of Zot
-: end
 
 {
 -- Equipment autopickup (by Medar and various others)
