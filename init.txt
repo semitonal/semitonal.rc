@@ -1,5 +1,5 @@
 #### Up-to-date config lives on Github:
-#### https://github.com/MarvinPA/MarvinPA.rc
+#### https://github.com/semitonal/semitonal.rc
 
 #### Autopickup
 
