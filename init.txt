@@ -3,7 +3,7 @@
 
 #### Autopickup
 
-autopickup = $/?!%
+autopickup = $/?!
 ae := autopickup_exceptions
 ae =
 
@@ -11,15 +11,11 @@ ae =
 ae += (useless|evil)_item
 ae += dangerous_item.*scrolls? of (holy word|noise|torment)
 ae += scrolls? of (immolation|vulnerability)
-ae += potions? of (berserk rage|flight|invisibility|lignification|mutation)
+ae += potions? of (berserk rage|flight|invisibility|lignification|mutation|stabbing)
 ae += wands? of (flame|random effects)
-: if you.race() ~= "Vampire" then
-ae += potions? of.*blood
-: end
 
 # Inclusions
 ae += <unidentified.*(jewellery|book|magical staff)
-ae += <jewellery.*(slaying|protection$|evasion|reflection)
 ae += <throwing net
 ae += <curare
 
@@ -27,7 +23,7 @@ ae += <curare
 # TODO: use Lua here to avoid having to save and reload
 : local branch = you.branch()
 : if branch == "Pan" or branch:find("Zig") then
-autopickup = $%
+autopickup = $
 ae =
 
 ae += (useless|evil)_item
@@ -37,7 +33,7 @@ ae += <scrolls? of (amnesia|brand weapon|enchant|magic mapping)
 ae += <scrolls? of (fog|holy word|torment)
 ae += <scrolls? of (blinking|teleportation)
 ae += <potions? of (experience|curing|heal wounds|magic)
-ae += <unidentified.*jewellery
+ae += <unidentified.*(jewellery|book|magical staff)
 : end
 
 # Always applies
@@ -228,16 +224,13 @@ ai += (bad|dangerous)_item.*potion:!q
 ai += (bad|dangerous)_item.*scroll:!r
 ai += potions? of berserk rage:!q
 ai += scrolls? of silence:!r
-ai += staff of (Wucad Mu|conjuration|energy|power|wizardry):!a
+ai += staff of (Wucad Mu|conjuration|energy|wizardry):!a
 ai += (large rock|throwing net|curare|of dispersal):=f
 ai += scrolls? of identify:@r1
 ai += potions? of curing:@q1
 ai += potions? of heal wounds:@q2
 ai += potions? of haste:@q3
 ai += scrolls? of teleportation:@r4
-: if you.race() == "Vampire" then
-ai += potions? of.*blood:@q4
-: end
 
 show_god_gift = unident
 
@@ -250,7 +243,7 @@ bindkey = [O] CMD_NO_CMD_DEFAULT
 bindkey = [}] CMD_NO_CMD_DEFAULT
 
 # Macro keys
-bindkey = [`] CMD_LUA_CONSOLE
+bindkey = [`] CMD_NO_CMD_DEFAULT
 bindkey = [1] CMD_NO_CMD_DEFAULT
 bindkey = [2] CMD_NO_CMD_DEFAULT
 bindkey = [3] CMD_NO_CMD_DEFAULT
@@ -339,8 +332,6 @@ mon += thorn hunter:cyan f
 mon += boggart:magenta i
 mon += greater mummy:lightmagenta M
 mon += ancient lich:lightmagenta L
-mon += ancient champion:lightcyan z
-mon += curse skull:lightmagenta z
 mon += lightning spire:lightcyan {
 
 show_player_species = true
@@ -359,12 +350,6 @@ item += potions? of experience:cyan
 item += unidentified.*(potion|scroll|book|wand|jewellery):lightblue
 item += unidentified.*manual:white
 item += useless_item.*(potion|scroll):darkgrey
-
-# Food
-item += (corpse|chunk):white
-item += mutagenic.*(corpse|chunk):darkgrey
-item += forbidden.*(corpse|chunk):darkgrey
-item += inedible.*(corpse|chunk):darkgrey
 
 #### Messages
 
@@ -738,31 +723,16 @@ menu += darkgrey:.*mutagenic.*
 spell_slot += Dispel Undead:q
 spell_slot += Cause Fear:Q
 spell_slot += Alistair's Intoxication:Q
-spell_slot += Mass Confusion:Q
 spell_slot += Discord:Q
 spell_slot += Passage of Golubria:w
-spell_slot += Abjuration:W
-spell_slot += Aura of Abjuration:W
 spell_slot += Apportation:e
-spell_slot += Recall:r
-spell_slot += Summon Butterflies:R
-spell_slot += Control Teleport:t
 spell_slot += Metabolic Englaciation:T
 spell_slot += Ozocubu's Armour:aA
-spell_slot += Stoneskin:aA
-spell_slot += Phase Shift:aA
 spell_slot += Shroud of Golubria:aA
-spell_slot += Condensation Shield:aA
-spell_slot += Cigotuvi's Embrace:aA
 spell_slot += Swiftness:s
-spell_slot += Repel Missiles:d
-spell_slot += Deflect Missiles:d
 spell_slot += Darkness:D
-spell_slot += Flight:f
 spell_slot += Ring of Flames:F
-spell_slot += Regeneration:g
 spell_slot += Silence:G
-spell_slot += Haste:h
 spell_slot += Disjunction:H
 spell_slot += Invisibility:j
 spell_slot += Death's Door:J
@@ -772,10 +742,8 @@ spell_slot += Controlled Blink:B
 spell_slot += Sublimation of Blood:n
 spell_slot += Passwall:N
 spell_slot += Necromutation:M
-spell_slot += Cure Poison:Z
 spell_slot += Death Channel:ZXC
 spell_slot += Simulacrum:ZXC
-spell_slot += Warp Weapon:ZXC
 spell_slot += Exruciating Wounds:ZXC
 spell_slot += Dispersal:ZXC
 spell_slot += Leda's Liquefaction:ZXC
@@ -812,27 +780,25 @@ spell_slot += Dragon's Call:XCV
 # Low-level spells
 spell_slot += Freeze:z
 spell_slot += Magic Dart:z
-spell_slot += Flame Tongue:z
+spell_slot += Foxfire:z
 spell_slot += Pain:z
 spell_slot += Shock:z
 spell_slot += Sandblast:z
 spell_slot += Sting:z
 spell_slot += Ensorcelled Hibernation:z
 spell_slot += Infusion:z
-spell_slot += Throw Frost:zxc
-spell_slot += Throw Flame:zxc
 spell_slot += Searing Ray:zxc
 spell_slot += Portal Projectile:zxc
 spell_slot += Slow:zxc
 spell_slot += Inner Flame:zxc
 spell_slot += Teleport Other:zxc
 spell_slot += Tukima's Dance:zxc
+spell_slot += Poisonous Vapours:zxc
 spell_slot += Corona:Z
 spell_slot += Animate Skeleton:Z
 spell_slot += Corpse Rot:Z
 spell_slot += Confusing Touch:ZX
 spell_slot += Sticks to Snakes:ZX
-spell_slot += Sure Blade:ZX
 spell_slot += Conjure Flame:ZX
 
 # Mid-level spells
@@ -841,7 +807,7 @@ spell_slot += Dazzling Spray:zxcv
 spell_slot += Iskenderun's Mystic Blast:zxcv
 spell_slot += Force Lance:zxcv
 spell_slot += Sticky Flame:zxcv
-spell_slot += Throw Icicle:zxcv
+spell_slot += Hailstorm:zxcv
 spell_slot += Venom Bolt:zxcv
 spell_slot += Airstrike:zxcv
 spell_slot += Agony:zxcv
@@ -853,35 +819,31 @@ spell_slot += Confuse:zxcv
 spell_slot += Gell's Gravitas:zxcv
 spell_slot += Mephitic Cloud:cC
 spell_slot += Static Discharge:ZX
-spell_slot += Control Undead:ZX
 spell_slot += Fulminant Prism:ZX
 spell_slot += Ignite Poison:ZX
 spell_slot += Battlesphere:XC
 spell_slot += Lee's Rapid Deconstruction:XC
-spell_slot += Poisonous Cloud:XC
 spell_slot += Freezing Cloud:XC
 spell_slot += Ozocubu's Refrigeration:XC
 spell_slot += Animate Dead:XC
-spell_slot += Twisted Resurrection:XC
 spell_slot += Olgreb's Toxic Radiance:XC
 spell_slot += Irradiate:XC
 
 # High-level spells
 spell_slot += Lightning Bolt:xcv
 spell_slot += Fireball:xcv
-spell_slot += Bolt of:xcv
 spell_slot += Iron Shot:xcv
 spell_slot += Poison Arrow:xcv
 spell_slot += Orb of Destruction:xcv
 spell_slot += Lehudib's Crystal Spear:xcv
+spell_slot += Starburst
 spell_slot += Conjure Ball Lightning:XCV
-spell_slot += Delayed Fireball:XCV
+spell_slot += Ignition:XCV
 spell_slot += Chain Lightning:XCV
 spell_slot += Fire Storm:V
-spell_slot += Glaciate:V
+spell_slot += Absolute Zero:V
 spell_slot += Shatter:V
 spell_slot += Tornado:V
-spell_slot += Singularity:V
 
 # Default letters
 spell_slot += .*:yuiopYUIOP
