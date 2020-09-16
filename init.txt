@@ -198,10 +198,10 @@ dump_item_origin_price = -1
 dump_message_count = 30
 dump_order  = header,hiscore,stats,misc,mutations,skills,spells,inventory
 dump_order += overview,screenshot,monlist,messages,action_counts,vaults
-dump_order += notes,kills
+dump_order += notes,kills,turns_by_place
 dump_book_spells = true
 note_items =
-note_items += of Zot,experience,acquirement,of running,of resistance,Archmagi
+note_items += of Zot,experience,acquirement,of resistance,Archmagi
 note_items += crystal plate armour,dragon scales,artefact
 note_monsters =
 note_monsters += orb of fire,ancient lich
@@ -224,7 +224,7 @@ ai += (bad|dangerous)_item.*potion:!q
 ai += (bad|dangerous)_item.*scroll:!r
 ai += potions? of berserk rage:!q
 ai += scrolls? of silence:!r
-ai += staff of (Wucad Mu|conjuration|energy|wizardry):!a
+ai += staff of Wucad Mu:!a
 ai += (large rock|throwing net|curare|of dispersal):=f
 ai += scrolls? of identify:@r1
 ai += potions? of curing:@q1
@@ -410,11 +410,6 @@ stop += back to life
 stop += time is quickly running out
 stop += life is in your own hands
 stop += is no longer charmed
-
-: if you.race() == "Ghoul" then
-stop += smell.*(rott(ing|en)|decay)
-stop += something tasty in your inventory
-: end
 
 :if you.god() == "Xom" then
 stop += god:
@@ -727,18 +722,14 @@ spell_slot += Discord:Q
 spell_slot += Passage of Golubria:w
 spell_slot += Apportation:e
 spell_slot += Metabolic Englaciation:T
-spell_slot += Ozocubu's Armour:aA
-spell_slot += Shroud of Golubria:aA
+spell_slot += Ozocubu's Armour:a
 spell_slot += Swiftness:s
-spell_slot += Darkness:D
-spell_slot += Ring of Flames:F
 spell_slot += Silence:G
 spell_slot += Disjunction:H
 spell_slot += Invisibility:j
 spell_slot += Death's Door:J
 spell_slot += Borgnjor's Revivification:L
 spell_slot += Blink:b
-spell_slot += Controlled Blink:B
 spell_slot += Sublimation of Blood:n
 spell_slot += Passwall:N
 spell_slot += Necromutation:M
@@ -798,7 +789,6 @@ spell_slot += Corona:Z
 spell_slot += Animate Skeleton:Z
 spell_slot += Corpse Rot:Z
 spell_slot += Confusing Touch:ZX
-spell_slot += Sticks to Snakes:ZX
 spell_slot += Conjure Flame:ZX
 
 # Mid-level spells
@@ -813,7 +803,7 @@ spell_slot += Airstrike:zxcv
 spell_slot += Agony:zxcv
 spell_slot += Petrify:zxcv
 spell_slot += Vampiric Draining:zxcv
-spell_slot += Song of Slaying:zxcv
+spell_slot += Wereblood:zxcv
 spell_slot += Spectral Weapon:zxcv
 spell_slot += Confuse:zxcv
 spell_slot += Gell's Gravitas:zxcv
