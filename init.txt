@@ -263,6 +263,10 @@ bindkey = [&] CMD_NO_CMD_DEFAULT
 bindkey = [\] CMD_TARGET_OBJ_CYCLE_FORWARD
 bindkey = [^I] CMD_TARGET_CYCLE_FORWARD
 
+# Autofight
+bindkey = [p] CMD_NO_CMD_DEFAULT
+bindkey = [\{-233}] CMD_AUTOFIGHT_NOMOVE
+
 # Saving
 bindkey = [S] CMD_SAVE_GAME_NOW
 
