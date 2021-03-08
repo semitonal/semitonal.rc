@@ -23,8 +23,10 @@ ae += <manual of
 ae += <rune of Zot
 
 {
+clear_autopickup_funcs()
+
 -- Autopickup aux and enchanted equipment (by Medar and others)
-local function pickup_equipment(it, name)
+add_autopickup_func(function (it, name)
   if it.is_useless then return end
 
   local class = it.class(true)
@@ -55,19 +57,19 @@ local function pickup_equipment(it, name)
     end
   end
   return
-end
+end)
 
 -- Autopickup stackable items
-local function pickup_stackable(it, name)
+add_autopickup_func(function (it, name)
   return it.stacks() or nil
-end
+end)
 
 -- Autopickup uncollected misc items
-local function pickup_misc(it, name)
+add_autopickup_func(function (it, name)
   if it.class(true) ~= "misc" then
     return
   end
-  local itname = it.name(true) -- Not the name parameter, which includes prefixes.
+  local itname = it.name(true)
   if not string.find(itname, "ziggurat") then
     for inv in iter.invent_iterator:new(items.inventory()) do
       if itname == inv.name() then
@@ -76,7 +78,7 @@ local function pickup_misc(it, name)
     end
   end
   return
-end
+end)
 
 clear_autopickup_funcs()
 add_autopickup_func(pickup_equipment)
@@ -224,7 +226,6 @@ note_dgl_messages = true
 
 ai := autoinscribe
 
-ai =
 ai += (bad|dangerous)_item.*potion:!q
 ai += (bad|dangerous)_item.*scroll:!r
 ai += potions? of berserk rage:!q
@@ -334,7 +335,7 @@ mon += black sun:9
 mon += fungus:lightgrey f
 mon += thorn hunter:cyan f
 mon += boggart:magenta i
-mon += greater mummy:lightmagenta M
+mon += royal mummy:lightmagenta M
 mon += ancient lich:lightmagenta L
 mon += lightning spire:lightcyan {
 
