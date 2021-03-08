@@ -79,11 +79,6 @@ add_autopickup_func(function (it, name)
   end
   return
 end)
-
-clear_autopickup_funcs()
-add_autopickup_func(pickup_equipment)
-add_autopickup_func(pickup_stackable)
-add_autopickup_func(pickup_misc)
 }
 
 default_autopickup = true
