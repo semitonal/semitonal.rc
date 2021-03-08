@@ -8,7 +8,7 @@ ae := autopickup_exceptions
 ae =
 
 # Exclusions
-ae += (useless|forbidden)_item
+ae += (useless|evil)_item
 ae += dangerous_item.*scrolls? of (holy word|noise|torment)
 ae += scrolls? of (immolation|vulnerability)
 ae += potions? of (berserk rage|flight|invisibility|lignification|mutation)
