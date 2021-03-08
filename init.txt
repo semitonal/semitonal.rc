@@ -7,42 +7,23 @@ autopickup = $/?!
 ae := autopickup_exceptions
 ae =
 
-# Exceptions
-ae += (useless|evil)_item
+# Exclusions
+ae += (useless|forbidden)_item
 ae += dangerous_item.*scrolls? of (holy word|noise|torment)
 ae += scrolls? of (immolation|vulnerability)
-ae += potions? of (berserk rage|flight|invisibility|lignification|mutation|stabbing)
+ae += potions? of (berserk rage|flight|invisibility|lignification|mutation)
 ae += wands? of (flame|random effects)
 
 # Inclusions
 ae += <unidentified.*(jewellery|book|magical staff)
 ae += <throwing net
 ae += <curare
-
-# Ubernagas
-# TODO: use Lua here to avoid having to save and reload
-: local branch = you.branch()
-: if branch == "Pan" or branch:find("Zig") then
-autopickup = $
-ae =
-
-ae += (useless|evil)_item
-ae += dangerous_item.*scrolls? of (holy word|torment)
-ae += <scrolls? of (acquirement|identify|remove curse)
-ae += <scrolls? of (amnesia|brand weapon|enchant|magic mapping)
-ae += <scrolls? of (fog|holy word|torment)
-ae += <scrolls? of (blinking|teleportation)
-ae += <potions? of (experience|curing|heal wounds|magic)
-ae += <unidentified.*(jewellery|book|magical staff)
-: end
-
-# Always applies
 ae += <figurine of a ziggurat
 ae += <manual of
 ae += <rune of Zot
 
 {
--- Equipment autopickup (by Medar and various others)
+-- Autopickup aux and enchanted equipment (by Medar and others)
 local function pickup_equipment(it, name)
   if it.is_useless then return end
 
@@ -76,14 +57,23 @@ local function pickup_equipment(it, name)
   return
 end
 
--- Autopickup of stackable items
-local function pickup_stackable(it, name)  
-  local class = it.class(true)
-  if class == "potion"
-     or class == "scroll"
-     or class == "missile"
-     or class == "miscellaneous" then
-    if it.stacks() then return true end
+-- Autopickup stackable items
+local function pickup_stackable(it, name)
+  return it.stacks() or nil
+end
+
+-- Autopickup uncollected misc items
+local function pickup_misc(it, name)
+  if it.class(true) ~= "misc" then
+    return
+  end
+  local itname = it.name(true) -- Not the name parameter, which includes prefixes.
+  if not string.find(itname, "ziggurat") then
+    for inv in iter.invent_iterator:new(items.inventory()) do
+      if itname == inv.name() then
+        return false
+      end
+    end
   end
   return
 end
@@ -91,6 +81,7 @@ end
 clear_autopickup_funcs()
 add_autopickup_func(pickup_equipment)
 add_autopickup_func(pickup_stackable)
+add_autopickup_func(pickup_misc)
 }
 
 default_autopickup = true
@@ -99,6 +90,7 @@ assign_item_slot = forward
 pickup_menu_limit = 1
 drop_filter =
 drop_filter += useless_item
+auto_hide_spells = false
 
 #### Travel & exploration
 
@@ -107,22 +99,24 @@ explore_delay = -1
 rest_delay = -1
 explore_greedy = true
 explore_stop =
-explore_stop += items,stairs,shops,altars,portals,runed_doors
+explore_stop += items,stairs,shops,altars,portals,branches,runed_doors
 explore_stop += greedy_items,greedy_pickup_smart,greedy_visited_item_stack
-auto_sacrifice = true
-auto_butcher = true
+explore_wall_bias = 0
 travel_key_stop = true
+travel_one_unsafe_move = false
 auto_exclude =
-auto_exclude += oklob,statue,roxanne,hyperactive,lightning spire
+auto_exclude += oklob,statue,roxanne,lightning spire
 
 #### Resting
 
-runrest_safe_poison = 80:100
+delay_safe_poison = 80:100
 runrest_ignore_monster =
 runrest_ignore_monster += ^butterfly$:1
 runrest_ignore_monster += ^wandering mushroom$:1
 rest_wait_both = true
+rest_wait_ancestor = false
 rest_wait_percent = 100
+explore_auto_rest = false
 
 #### Interface & commands
 
@@ -133,12 +127,10 @@ travel_open_doors = true
 easy_unequip = true
 equip_unequip = true
 jewellery_prompt = true
-show_uncursed = true
-easy_confirm = all
+easy_confirm = none
+simple_targeting = true
+force_targeter = all
 allow_self_target = no
-confirm_butcher = never
-easy_eat_chunks = false
-auto_eat_chunks = true
 easy_quit_item_prompts = false
 easy_exit_menu = false
 ability_menu = false
@@ -146,65 +138,77 @@ easy_floor_use = true
 sort_menus = true:equipped,identified,basename,art,ego,glowing,qualname,curse,charged,slot
 autofight_stop = 0
 autofight_warning = 0
-autofight_hunger_stop = 0
 autofight_throw = false
-autofight_throw_nomove = true
+autofight_throw_nomove = false
 autofight_fire_stop = false
 autofight_caught = true
 autofight_wait = true
 autofight_prompt_range = false
-fail_severity_to_confirm = 3
+fail_severity_to_confirm = 0
 easy_door = false
 warn_hatches = false
 enable_recast_spell = false
+regex_search = false
+autopickup_search = false
+bad_item_prompt = false
+fire_items_start = a
+fire_order = launcher,throwing,inscribed,spell,evokable,ability
+fail_severity_to_quiver = 2
+launcher_autoquiver = true
 
 #### Messages & display
 
 hp_warning = 50
 mp_warning = 0
-hp_colour = 100:green, 99:lightgray, 75:yellow, 50:lightred, 25:red
-mp_colour = 100:green, 99:lightgray, 75:yellow, 50:lightred, 25:red
+hp_colour = 100:green,99:lightgray,75:yellow,50:lightred,25:red
+mp_colour = 100:green,99:lightgray,75:yellow,50:lightred,25:red
 stat_colour -= 3:red
 status_caption_colour = brown
-enemy_hp_colour = green green brown brown magenta red lightgrey
+enemy_hp_colour = green green brown brown magenta red
 clear_messages = false
 show_more = true
 small_more = true
 show_newturn_mark = true
-show_game_turns = true
+show_game_time = true
+equip_bar = false
+animate_equip_bar = false
 item_stack_summary_minimum = 4
+mlist_min_height = 4
+mlist_allow_alternate_layout = false
+monster_item_view_coordinates = true
+monster_item_view_features =
+monster_item_view_features += stair,trap
+messages_at_top = false
 msg_condense_repeats = false
-msg_condense_short = true
+msg_condense_short = false
 show_travel_trail = false
 skill_focus = false
 default_show_all_skills = false
-monster_list_colour =
-monster_list_colour += friendly:green,neutral:brown
-monster_list_colour += good_neutral:brown,strict_neutral:brown
-monster_list_colour += trivial:darkgrey,easy:lightgrey
-monster_list_colour += tough:yellow,nasty:lightred
-view_delay = 300
+view_delay = 600
 use_animations =
 use_animations += beam,range
+darken_beyond_range = true
 cloud_status = true
+always_show_zot = false
 tile_display_mode = hybrid
 bold_brightens_foreground = true
 
 #### Character dump & notes
 
+dump_kill_places = single
 dump_on_save = true
 dump_item_origins = none
 dump_item_origin_price = -1
 dump_message_count = 30
-dump_order  = header,hiscore,stats,misc,mutations,skills,spells,inventory
-dump_order += overview,screenshot,monlist,messages,action_counts,vaults
-dump_order += notes,kills,turns_by_place
-dump_book_spells = true
+dump_order  = header,hiscore,stats,misc,inventory
+dump_order += skills,spells,overview,mutations,messages,screenshot
+dump_order += monlist,notes,action_counts
+dump_order += vaults,turns_by_place,kills_by_place
 note_items =
-note_items += of Zot,experience,acquirement,of resistance,Archmagi
-note_items += crystal plate armour,dragon scales,artefact
+note_items += of Zot,experience,acquirement
+note_items += of resistance,Archmagi,crystal plate armour,dragon scales
 note_monsters =
-note_monsters += orb of fire,ancient lich
+note_monsters += orb of fire,ancient lich,dead lich
 note_hp_percent = 10
 note_all_skill_levels = true
 note_xom_effects = true
@@ -212,7 +216,7 @@ note_messages =
 note_messages += Your scales start
 note_messages += You feel monstrous
 note_messages += protects you from harm
-note_messages += You (fall through|are sucked into) a shaft
+note_messages += You (fall|are sucked) into a shaft
 note_chat_messages = false
 note_dgl_messages = true
 
@@ -220,12 +224,12 @@ note_dgl_messages = true
 
 ai := autoinscribe
 
+ai =
 ai += (bad|dangerous)_item.*potion:!q
 ai += (bad|dangerous)_item.*scroll:!r
 ai += potions? of berserk rage:!q
 ai += scrolls? of silence:!r
 ai += staff of Wucad Mu:!a
-ai += (large rock|throwing net|curare|of dispersal):=f
 ai += scrolls? of identify:@r1
 ai += potions? of curing:@q1
 ai += potions? of heal wounds:@q2
@@ -239,8 +243,6 @@ show_god_gift = unident
 # Useless commands
 bindkey = [R] CMD_NO_CMD_DEFAULT
 bindkey = [T] CMD_NO_CMD_DEFAULT
-bindkey = [O] CMD_NO_CMD_DEFAULT
-bindkey = [}] CMD_NO_CMD_DEFAULT
 
 # Macro keys
 bindkey = [`] CMD_NO_CMD_DEFAULT
@@ -254,7 +256,7 @@ bindkey = [8] CMD_NO_CMD_DEFAULT
 bindkey = [9] CMD_NO_CMD_DEFAULT
 
 # Wizmode
-# bindkey = [&] CMD_NO_CMD_DEFAULT
+bindkey = [&] CMD_NO_CMD_DEFAULT
 
 # Targeting
 bindkey = [\] CMD_TARGET_OBJ_CYCLE_FORWARD
@@ -262,6 +264,10 @@ bindkey = [^I] CMD_TARGET_CYCLE_FORWARD
 
 # Saving
 bindkey = [S] CMD_SAVE_GAME_NOW
+
+### Macros
+
+TODO: all of this
 
 #### Glyphs
 
@@ -275,13 +281,11 @@ cset_unicode = cloud_weak:xa7
 cset_unicode = cloud_fading:x263c
 feature = (closed|runed|sealed) door {+,,}
 
-# Free glyphs: a, j, k, I, U
-# TODO: free up R, B
+# TODO: recheck all of this
 mon := mon_glyph
 mon =
 
 # Uniques
-# TODO: recheck all of this
 mon += Louise:blue
 
 # Insects
@@ -352,6 +356,7 @@ item += unidentified.*manual:white
 item += useless_item.*(potion|scroll):darkgrey
 
 #### Messages
+# TODO: recheck all of this
 
 ignore := runrest_ignore_message
 ignore =
@@ -394,7 +399,7 @@ ignore += sound:
 # Bad things
 stop += found.*trap
 stop += (blundered into a|invokes the power of) Zot
-stop += You fall through a shaft
+stop += You (fall|are sucked) into a shaft
 stop += A sentinel's mark forms upon you\.
 stop += A huge blade swings out and slices into you
 stop += (starving|devoid of blood)
@@ -444,6 +449,7 @@ more += grants you a gift
 more += offers you knowledge of
 more += believes you are ready to make a new sacrifice
 more += may now remember your ancestor
+more += invites you to partake of
 
 # Abyss
 more += is wielding.*distortion
@@ -479,7 +485,7 @@ more += You don't have the energy to cast that spell
 # Bad things
 more += Your surroundings flicker
 more += You cannot teleport right now
-more += You fall through a shaft
+more += You (fall|are sucked) into a shaft
 more += You fall into the water
 more += You fall into the lava
 more += Careful!
@@ -534,7 +540,6 @@ more += You .* the altar of
 more += will bless one of your weapons
 more += will bloody your weapon with pain
 more += will brand one of your weapons
-more += will supercharge a wand or rod
 more += It is a scroll of amnesia
 more += It is a scroll of brand weapon
 more += It is a scroll of enchant armour
@@ -553,7 +558,7 @@ more += You deal a card
 # Others
 more += You have reached level
 more += You rejoin the land of the living
-more += You have finished (your manual|forgetting about)
+more += You have finished your manual
 more += Your scales start
 more += You feel monstrous
 more += Jiyva alters your body
@@ -562,6 +567,7 @@ more += god:
 : end
 
 #### Message colours
+# TODO: recheck all of this
 
 $danger   := lightred
 $warning  := yellow
@@ -572,7 +578,6 @@ msc =
 menu := menu_colour
 menu =
 
-# TODO: recheck all of this
 # Multi-turn
 channel.multiturn = mute
 
@@ -624,16 +629,12 @@ end
 
 # Other
 msc += mute:meld.*your body
-msc += mute:This .* flesh tastes
 msc += mute:begins to bleed from.*wounds
 msc += mute:writhes in agony as.*flesh
 msc += mute:You feel a.*surge of power
 msc += mute:Your legs become a tail as you enter the water
 msc += mute:You cannot train any new skill
 msc += mute:Moving in this stuff is going to be slow
-msc += mute:chunks of flesh in your inventory.*rotted away
-msc += mute:Eating .*chunk
-msc += mute:You butcher
 
 # Default colours
 msc += $danger:drains you
@@ -713,6 +714,7 @@ menu += darkgrey:.*evil_eating.*
 menu += darkgrey:.*mutagenic.*
 
 #### Spell slots
+# TODO: recheck all of this
 
 # Utility spells
 spell_slot += Dispel Undead:q
@@ -753,7 +755,6 @@ spell_slot += Summon Small Mammal:zxc
 spell_slot += Call Imp:zxc
 spell_slot += Call Canine Familiar:zxcv
 spell_slot += Summon Ice Beast:zxcv
-spell_slot += Summon Demon:zxcv
 spell_slot += Shadow Creatures:zxcv
 spell_slot += Summon Guardian Golem:ZX
 spell_slot += Summon Lightning Spire:ZX
