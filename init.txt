@@ -348,10 +348,11 @@ item =
 item += (potion|scroll|wand|jewellery):lightgrey
 item += spellbook:red
 item += scrolls? of (blinking|teleportation):yellow
-item += potions? of (haste|heal wounds|magic):yellow
+item += potions? of (haste|heal wounds):yellow
 item += scrolls? of (acquirement|brand weapon|enchant):cyan
 item += potions? of experience:cyan
-item += unidentified.*(potion|scroll|book|wand|jewellery):lightblue
+item += unidentified.*(potion|scroll|book|wand):lightblue
+item += unidentified.*(jewellery|magical staff):lightblue
 item += unidentified.*manual:white
 item += useless_item.*(potion|scroll):darkgrey
 
@@ -702,12 +703,12 @@ menu += lightred: cursed
 menu += darkgrey:.*useless_item.*
 menu += inventory:lightgreen:.*equipped.*
 menu += white:.*artefact.*
-menu += lightblue:^unidentified .*(potion|scroll|book|wand|jewellery|staff).*
+menu += lightblue:^unidentified .*(potion|scroll|book|wand).*
+menu += lightblue:^unidentified .*(jewellery|magical staff).*
 menu += lightblue:^unidentified .*weapon.*(runed|glowing)
 menu += lightblue:^unidentified .*armour.*(runed|glowing)
 menu += lightblue:^unidentified .*armour.*(embroidered|shiny|dyed)
-menu += yellow:scrolls? of (blinking|teleportation)
-menu += yellow:potions? of (haste|heal wounds|magic)
+menu += yellow:potions? of (haste|heal wounds)
 
 #### Spell slots
 # TODO: recheck all of this
