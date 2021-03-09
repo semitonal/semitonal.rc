@@ -702,16 +702,12 @@ menu += lightred: cursed
 menu += darkgrey:.*useless_item.*
 menu += inventory:lightgreen:.*equipped.*
 menu += white:.*artefact.*
-menu += lightblue:^unidentified .*(potion|scroll|wand|jewellery|deck).*
+menu += lightblue:^unidentified .*(potion|scroll|book|wand|jewellery|staff).*
 menu += lightblue:^unidentified .*weapon.*(runed|glowing)
 menu += lightblue:^unidentified .*armour.*(runed|glowing)
 menu += lightblue:^unidentified .*armour.*(embroidered|shiny|dyed)
-menu += yellow:heal wounds
-
-# Food
-menu += darkgrey:.*inedible.*
-menu += darkgrey:.*evil_eating.*
-menu += darkgrey:.*mutagenic.*
+menu += yellow:scrolls? of (blinking|teleportation)
+menu += yellow:potions? of (haste|heal wounds|magic)
 
 #### Spell slots
 # TODO: recheck all of this
