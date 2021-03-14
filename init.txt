@@ -3,7 +3,7 @@
 
 #### Autopickup
 
-autopickup = $/?!
+autopickup = $/?!}
 ae := autopickup_exceptions
 ae =
 
