@@ -1,22 +1,15 @@
-# Key Mappings:
-K2:\{9}
-A:+
-
 # Command Macros:
-M:\{19}
-A:S
-
 M:1
-A:zzf\{27}
+A:zzf
 
 M:2
-A:zxf\{27}
+A:zxf
 
 M:3
-A:zcf\{27}
+A:zcf
 
 M:4
-A:zef\{27}
+A:zef
 
 M:6
 A:\{32}
@@ -28,17 +21,13 @@ M:8
 A:\{32}
 
 M:9
-A:zM
+A:zMf
 
 M:Z
 A:===force_cast_spell
 
-M:]
-A:===set_target_skill
-
 M:`
-A:ta.\{27}
+A:ta.
 
 M:z
 A:===force_cast_spell
-
