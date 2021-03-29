@@ -267,7 +267,21 @@ bindkey = [S] CMD_SAVE_GAME_NOW
 
 ### Macros
 
-TODO: all of this
+macros += M 1 zzf
+macros += M 2 zxf
+macros += M 3 zcf
+macros += M 4 zef
+macros += M 6 \{32}
+macros += M 7 \{32}
+macros += M 8 \{32}
+macros += M 9 zMf
+macros += M z ===force_cast_spell
+macros += M Z ===force_cast_spell
+: if you.race() == "Naga" or you.race():find("Draconian") or you.race() == "Palentonga" then
+macros += M ` aaf
+: else
+macros += M ` taf
+: end
 
 #### Glyphs
 
