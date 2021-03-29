@@ -277,8 +277,9 @@ macros += M 8 \{32}
 macros += M 9 zMf
 macros += M z ===force_cast_spell
 macros += M Z ===force_cast_spell
-: if you.race() == "Naga" or you.race():find("Draconian") or you.race() == "Palentonga" then
-macros += M ` aaf
+: if you.race() == "Naga" or you.race():find("Draconian")
+:    or you.race() == "Palentonga" then
+macros += M ` aff
 : else
 macros += M ` taf
 : end
