@@ -281,48 +281,74 @@ cset_unicode = cloud_weak:xa7
 cset_unicode = cloud_fading:x263c
 feature = (closed|runed|sealed) door {+,,}
 
-# TODO: recheck all of this
 mon := mon_glyph
 mon =
 
-# Uniques
-mon += Louise:blue
-
-# Insects
-mon += giant cockroach:brown B
-mon += demonic crawler:green B
-mon += worker ant:red B
-mon += queen ant:lightgreen B
-mon += soldier ant:white B
-mon += entropy weaver:yellow B
-
-# Flying insects
-mon += queen bee:lightgreen y
+# Humans (moved away from 'a')
+mon += imperial myrmidon:red g
+mon += servant of whispers:green g
+mon += ragged hierophant:magenta g
 
 # Canines
-mon += hog:lightred
-mon += hell hog:lightmagenta
+mon += hog:lightred h
+mon += hell hog:lightmagenta h
 
-# Beasts
-mon += ice beast:ice Y
-mon += sky beast:mutagenic Y
+# Boggarts
+mon += boggart:magenta i
 
-# Drakes
+# Drakes (moved away from 'k')
 mon += swamp drake:brown l
-mon += rime drake:blue l
+mon += rime drake:lightblue l
 mon += wind drake:white l
 mon += lindwurm:lightcyan l
 mon += death drake:lightgrey l
 
-# Gargoyles and statues
+# Arachnids
+mon += emperor scorpion:lightgreen s
+
+# Flying insects
+mon += queen bee:lightgreen y
+
+# Insects
+mon += formicid:cyan B
+mon += demonic crawler:green B
+mon += entropy weaver:yellow B
+
+# Frogs
+mon += goliath frog:lightcyan F
+mon += barachi:lightgrey F
+
+# Eyes
+mon += eye of devastation:brown G
+mon += golden eye:yellow G
+
+# Liches
+mon += ancient lich:magenta L
+
+# Mummies
+mon += royal mummy:lightmagenta M
+
+# Snakes and eels (moved away from ';')
+mon += sea snake:lightred S
+mon += electric eel:lightcyan S
+mon += lava snake:yellow S
+
+# Animated allies
+mon += dancing weapon:7
+mon += spectral weapon:green 7
+mon += animated armour:cyan 7
+mon += guardian golem:lightgreen 7
+mon += spellforged servitor:magenta 7
+
+# Statues and gargoyles (moved away from '9')
+mon += saltling:white 8
+mon += peacekeeper:lightgreen 8
+mon += ushabti:brown 8
+mon += statue:white 8
+mon += training dummy:white 8
 mon += gargoyle:lightgrey 8
 mon += war gargoyle:lightmagenta 8
 mon += molten gargoyle:yellow 8
-mon += spellforged servitor:magenta 8
-
-# Weapons
-mon += dancing weapon:7
-mon += spectral weapon:green 7
 
 # Demonspawn
 mon += blood saint:9
@@ -330,13 +356,15 @@ mon += warmonger:9
 mon += corrupter:9
 mon += black sun:9
 
-# Others
-mon += fungus:lightgrey f
-mon += thorn hunter:cyan f
-mon += boggart:magenta i
-mon += royal mummy:lightmagenta M
-mon += ancient lich:lightmagenta L
-mon += lightning spire:lightcyan {
+# Temporary statues
+mon += pillar of salt:white }
+mon += block of ice:lightblue }
+mon += lightning spire:lightcyan }
+
+# Uniques
+mon += Donald:green
+mon += Louise:blue
+mon += Frederick:lightmagenta
 
 show_player_species = true
 
