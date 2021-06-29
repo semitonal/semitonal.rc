@@ -3,7 +3,7 @@
 
 #### Autopickup
 
-autopickup = $/?!}
+autopickup = $/?!}:
 ae := autopickup_exceptions
 ae =
 
@@ -15,7 +15,7 @@ ae += potions? of (berserk rage|flight|invisibility|lignification|mutation)
 ae += wands? of (flame|random effects)
 
 # Inclusions
-ae += <unidentified.*(jewellery|book|magical staff)
+ae += <unidentified.*(jewellery|magical staff)
 ae += <throwing net
 ae += <curare
 ae += <figurine of a ziggurat
@@ -844,11 +844,11 @@ spell_slot += Airstrike:zxcv
 spell_slot += Agony:zxcv
 spell_slot += Petrify:zxcv
 spell_slot += Vampiric Draining:zxcv
-spell_slot += Wereblood:zxcv
 spell_slot += Spectral Weapon:zxcv
 spell_slot += Confuse:zxcv
 spell_slot += Gell's Gravitas:zxcv
 spell_slot += Mephitic Cloud:cC
+spell_slot += Wereblood:ZX
 spell_slot += Static Discharge:ZX
 spell_slot += Fulminant Prism:ZX
 spell_slot += Ignite Poison:ZX
