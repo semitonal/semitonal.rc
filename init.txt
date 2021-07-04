@@ -508,7 +508,7 @@ more += Found .* abyssal rune of Zot
 # Interrupts
 more += You don't .* that spell
 more += You fail to use your ability
-more += You miscast.*(Blink|Borgnjor|Door|Invisibility)
+more += You miscast.*(Blink|Borgnjor|Door|Invisibility|Coupling)
 more += You can't (read|drink|do)
 more += You cannot .* while unable to breathe
 more += You cannot .* in your current state
