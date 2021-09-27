@@ -251,6 +251,7 @@ bindkey = [6] CMD_NO_CMD_DEFAULT
 bindkey = [7] CMD_NO_CMD_DEFAULT
 bindkey = [8] CMD_NO_CMD_DEFAULT
 bindkey = [9] CMD_NO_CMD_DEFAULT
+bindkey = [0] CMD_NO_CMD_DEFAULT
 
 # Wizmode
 bindkey = [&] CMD_NO_CMD_DEFAULT
@@ -276,13 +277,14 @@ macros += M 6 \{32}
 macros += M 7 \{32}
 macros += M 8 \{32}
 macros += M 9 zMf
+macros += M 0 taf
 macros += M z ===force_cast_spell
 macros += M Z ===force_cast_spell
 : if you.race() == "Naga" or you.race():find("Draconian")
 :    or you.race() == "Palentonga" then
 macros += M ` aff
 : else
-macros += M ` taf
+macros += M ` \{32}
 : end
 
 #### Glyphs
@@ -344,38 +346,26 @@ mon += ancient lich:magenta L
 # Mummies
 mon += royal mummy:lightmagenta M
 
-# Snakes and eels (moved away from ';')
-mon += sea snake:lightred S
-mon += electric eel:lightcyan S
-mon += lava snake:yellow S
-
-# Animated allies
-mon += dancing weapon:7
-mon += spectral weapon:green 7
+# Animated creatures and items
+mon += dancing weapon:red 7
+mon += spectral weapon:yellow 7
 mon += animated armour:cyan 7
 mon += guardian golem:lightgreen 7
 mon += spellforged servitor:magenta 7
+mon += walking earthen tome:brown 7
+mon += walking crystal tome:green 7
+mon += walking divine tome:white 7
+mon += walking frostbound tome:lightblue 7
 
-# Statues and gargoyles (moved away from '9')
-mon += saltling:white 8
-mon += peacekeeper:lightgreen 8
-mon += ushabti:brown 8
-mon += statue:white 8
-mon += training dummy:white 8
-mon += gargoyle:lightgrey 8
-mon += war gargoyle:lightmagenta 8
-mon += molten gargoyle:yellow 8
-
-# Demonspawn
-mon += blood saint:9
-mon += warmonger:9
-mon += corrupter:9
-mon += black sun:9
+# Golems and gargoyles
+mon += peacekeeper:lightgreen 9
+mon += war gargoyle:lightmagenta 9
+mon += molten gargoyle:yellow 9
 
 # Temporary statues
-mon += pillar of salt:white }
-mon += block of ice:lightblue }
-mon += lightning spire:lightcyan }
+mon += pillar of salt:white 8
+mon += block of ice:white 8
+mon += lightning spire:lightcyan 8
 
 # Uniques
 mon += Donald:green
