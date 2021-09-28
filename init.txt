@@ -433,7 +433,7 @@ stop += found.*trap
 stop += (blundered into a|invokes the power of) Zot
 stop += You (fall|are sucked) into a shaft
 stop += A sentinel's mark forms upon you\.
-stop += A huge blade swings out and slices into you
+stop += You are suddenly yanked towards
 stop += (starving|devoid of blood)
 stop += wrath finds you
 stop += lose consciousness
@@ -515,9 +515,11 @@ more += You can't unwield
 more += You don't have the energy to cast that spell
 
 # Bad things
+more += Your surroundings seem slightly different
 more += Your surroundings flicker
 more += You cannot teleport right now
 more += You (fall|are sucked) into a shaft
+stop += You are suddenly yanked towards
 more += You fall into the water
 more += You fall into the lava
 more += Careful!
