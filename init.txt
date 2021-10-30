@@ -332,6 +332,10 @@ mon += formicid:cyan B
 mon += demonic crawler:green B
 mon += entropy weaver:yellow B
 
+# Giants
+mon += titan:magenta C
+mon += tainted leviathan:lightmagenta C
+
 # Frogs
 mon += goliath frog:lightcyan F
 mon += barachi:lightgrey F
@@ -371,6 +375,7 @@ mon += lightning spire:lightcyan 8
 mon += Donald:green
 mon += Louise:blue
 mon += Frederick:lightmagenta
+mon += Antaeus:lightcyan
 
 show_player_species = true
 
@@ -470,7 +475,8 @@ more += heat about you
 more += crackle of arcane power
 more += distant wind
 : end
-more += The mighty Pandemonium lord .* resides here
+more += Pandemonium lord.* resides here
+more += The tension of great conflict fills the air
 more += You pick up the .* rune and feel its power
 
 # Religion
@@ -512,7 +518,6 @@ more += This wand has no charges
 more += You are held in a net
 more += You don't have any such object
 more += You can't unwield
-more += You don't have the energy to cast that spell
 
 # Bad things
 more += Your surroundings seem slightly different
@@ -641,7 +646,7 @@ msc += mute:constricts?.*no damage
 # Jiyva
 msc += mute:slurping|squelching
 msc += mute:splits in two
-msc += mute:You feel.*(less hungry|power returning|better)
+msc += mute:You feel.*(power returning|better)
 
 # Uskayaw
 msc += mute:force your foes to
