@@ -375,6 +375,7 @@ mon += lightning spire:lightcyan 8
 mon += Donald:green
 mon += Louise:blue
 mon += Frederick:lightmagenta
+mon += Polyphemus:white
 mon += Antaeus:lightcyan
 
 show_player_species = true
