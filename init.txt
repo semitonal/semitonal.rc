@@ -47,7 +47,7 @@ add_autopickup_func(function (it, name)
       if cur.branded or cur.artefact then return end
       if it.branded then return true end
     elseif st == "body" then
-      local cur = items.equipped_at("armour")
+      local cur = items.equipped_at("body armour")
       if cur == nil then return end
       if cur.name("qual") ~= it.name("qual") then return end
 
