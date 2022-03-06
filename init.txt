@@ -332,6 +332,7 @@ mon += queen bee:lightgreen y
 mon += formicid:cyan B
 mon += demonic crawler:green B
 mon += entropy weaver:yellow B
+mon += pharaoh ant:lightcyan B
 
 # Giants
 mon += titan:magenta C
