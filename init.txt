@@ -151,9 +151,9 @@ regex_search = false
 autopickup_search = false
 bad_item_prompt = false
 fire_items_start = a
-fire_order = launcher,throwing,inscribed,spell,evokable,ability
-fail_severity_to_quiver = 2
-launcher_autoquiver = true
+fire_order = launcher,throwing,inscribed
+fail_severity_to_quiver = -1
+launcher_autoquiver = false
 
 #### Messages & display
 
