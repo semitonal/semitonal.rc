@@ -321,6 +321,7 @@ mon += rime drake:lightblue l
 mon += wind drake:white l
 mon += lindwurm:lightcyan l
 mon += death drake:lightgrey l
+mon += skyshark:lightmagenta l
 
 # Arachnids
 mon += emperor scorpion:lightgreen s
