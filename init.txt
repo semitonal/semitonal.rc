@@ -412,7 +412,7 @@ more =
 # Annoyances
 ignore += Jiyva gurgles merrily
 ignore += Jiyva appreciates your sacrifice
-ignore += Jiyva says: Divide and consume
+ignore += Jiyva says.*Divide and consume
 ignore += You hear.*splatter
 ignore += You feel.*sick
 ignore += disappears in a puff of smoke
@@ -659,8 +659,8 @@ msc += mute:force your foes to
 # Macro z and Z to ===force_cast_spell
 msc += mute:Cast which spell\? \(
 msc += mute:^Casting.*
-msc += mute:Confirm with \. or Enter, or press \? or \* to list all spells\.
-msc += mute:Press\: \? - help, Shift-Dir - straight line, f - you
+msc += mute:Confirm with \. or Enter.*or press \? or \* to list all spells\.
+msc += mute:Press\: \? - help.*Shift-Dir - straight line.*f - you
 msc += mute:for a list of commands and other information
 {
 function force_cast_spell()
