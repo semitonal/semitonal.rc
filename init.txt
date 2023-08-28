@@ -115,6 +115,7 @@ rest_wait_both = true
 rest_wait_ancestor = false
 rest_wait_percent = 100
 explore_auto_rest = false
+travel_open_doors = approach
 
 #### Interface & commands
 
@@ -780,15 +781,6 @@ spell_slot += Exruciating Wounds:ZXC
 spell_slot += Dispersal:ZXC
 spell_slot += Leda's Liquefaction:ZXC
 
-# Transformations
-spell_slot += Beastly Appendage:zxcv
-spell_slot += Spider Form:zxcv
-spell_slot += Ice Form:zxcv
-spell_slot += Blade Hands:zxcv
-spell_slot += Storm Form:XC
-spell_slot += Statue Form:XC
-spell_slot += Dragon Form:XC
-
 # Summons
 spell_slot += Summon Small Mammal:zxc
 spell_slot += Call Imp:zxc
@@ -856,7 +848,7 @@ spell_slot += Olgreb's Toxic Radiance:XC
 spell_slot += Irradiate:XC
 
 # High-level spells
-spell_slot += Lightning Bolt:xcv
+spell_slot += Plasma Beam:xcv
 spell_slot += Fireball:xcv
 spell_slot += Iron Shot:xcv
 spell_slot += Orb of Destruction:xcv
@@ -874,8 +866,8 @@ spell_slot += Tornado:V
 spell_slot += .*:yuiopYUIOP
 
 # Abilities
-ability_slot += Heal Wounds:F
 ability_slot += Evoke Blink:B
 ability_slot += Evoke Berserk:K
 ability_slot += Evoke Invisibility:j
-ability_slot += End Transformation:t
+ability_slot += Begin Untransformation:t
+ability_slot += End Transformation:T
